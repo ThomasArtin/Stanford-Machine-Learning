@@ -1,0 +1,46 @@
+>> t = [0:0.01:0.98];
+>> y1 = sin(2*pi*4*t);
+>> plot(t,y1);
+>> y2 = cos(2*pi*4*t);
+>> plot(t,y2);
+>> plot(t,y1);
+>> hold on; %causes octave to plot new figure over the old one
+>> plot(t,y2,'r'); %plot y2 in red 'r'
+>> xlabel('time')
+>> ylabel('value')
+>> legend('sin','cos')
+>> title('my plot')
+>> cd 'T:\Learning\Stanford ML\week2'
+>> title ('sin vs cos plot')
+>> print -dpng 'SinVsCos.png'
+>> close %closes plot
+>> figure(1);plot(t,y1);
+>> figure(2);plot(t,y2);
+>> %plot 2 seperate figures
+>> subplot(1,2,1);%plot in a 1x2 grid and here we choose the 1st element
+>> plot(t,y1);
+>> subplot(1,2,2);%plot in a 1x2 grid and here we choose the 2nd element
+>> plot(t,y2);
+>> axis([0.5 1 -1 1]) %sets the range of the x axis from 0.5 to 1 and the range of y from -1 to
+1 in the last plotted (y2)
+>> clf; %clears figures
+>> A = magic(5)
+A =
+
+   17   24    1    8   15
+   23    5    7   14   16
+    4    6   13   20   22
+   10   12   19   21    3
+   11   18   25    2    9
+
+>> imagesc(A) %5x5 grid figure each number represents a color
+>> close
+>> imagesc(A);colobar;colormap gray; %same but show a color bar and map the color to grayscale
+error: 'colobar' undefined near line 1 column 12
+>> imagesc(A);colorbar;colormap gray; %same but show a color bar and map the color to grayscale
+>> imagesc(magic(100));colorbar;colormap gray;
+>> a = 1,b = 2, c = 3
+a =  1
+b =  2
+c =  3
+>>

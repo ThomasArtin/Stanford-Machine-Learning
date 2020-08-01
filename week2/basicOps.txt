@@ -1,0 +1,663 @@
+>> eye(3)
+ans =
+
+Diagonal Matrix
+
+   1   0   0
+   0   1   0
+   0   0   1
+
+>> A = [1 2;3 4;5 6]
+A =
+
+   1   2
+   3   4
+   5   6
+
+>> size(A)
+ans =
+
+   3   2
+
+>> size (size(A))
+ans =
+
+   1   2
+
+>> size(A,1)
+ans =  3
+>> size(A,2)
+ans =  2
+>> length (A) %the longer dimensions
+ans =  3
+>> pwd
+ans = C:\Users\Thomas Joseph
+>> %the current directory we are in
+>> cd 'C:\Users\Thomas Joseph\Desktop'
+>> ls
+ Volume in drive C has no label.
+ Volume Serial Number is 8EE1-81C5
+
+ Directory of C:\Users\Thomas Joseph\Desktop
+
+[.]
+[..]
+Dollify-46d8e5b3-ee4c-4cd3-8db7-85ba9353f327-0.png
+
+               1 File(s)        946,300 bytes
+               2 Dir(s)  116,202,135,552 bytes free
+>> ls
+ Volume in drive C has no label.
+ Volume Serial Number is 8EE1-81C5
+
+ Directory of C:\Users\Thomas Joseph\Desktop
+
+[.]             [..]            featuresX.dat   priceY.dat
+               2 File(s)            657 bytes
+               2 Dir(s)  116,202,262,528 bytes free
+>> ls
+ Volume in drive C has no label.
+ Volume Serial Number is 8EE1-81C5
+
+ Directory of C:\Users\Thomas Joseph\Desktop
+
+[.]             [..]            featuresX.dat   priceY.dat
+               2 File(s)            657 bytes
+               2 Dir(s)  116,202,295,296 bytes free
+>> load ('featuresX.dat')
+>> load ('priceY.dat')
+>> who %shows what variables octave has in memory
+Variables in the current scope:
+
+A          ans        featuresX  priceY
+
+>> size (featuresX)
+ans =
+
+   47    2
+
+>> whos %detailed view
+Variables in the current scope:
+
+   Attr Name           Size                     Bytes  Class
+   ==== ====           ====                     =====  =====
+        A              3x2                         48  double
+        ans            1x2                         16  double
+        featuresX     47x2                        752  double
+        priceY        47x1                        376  double
+
+Total is 149 elements using 1192 bytes
+
+>> clear ans %to clear a var
+>> whos
+Variables in the current scope:
+
+   Attr Name           Size                     Bytes  Class
+   ==== ====           ====                     =====  =====
+        A              3x2                         48  double
+        featuresX     47x2                        752  double
+        priceY        47x1                        376  double
+
+Total is 147 elements using 1176 bytes
+
+>> v = priceY(1:10)
+v =
+
+   399900
+   329900
+   369000
+   232000
+   539900
+   299900
+   314900
+   198999
+   212000
+   242500
+
+>> save hello.mat v;%saves v in a file called hello.mat
+>> clear %deletes all  vars
+>> whos
+>> load hello.mat
+>> whos
+Variables in the current scope:
+
+   Attr Name        Size                     Bytes  Class
+   ==== ====        ====                     =====  =====
+        v          10x1                         80  double
+
+Total is 10 elements using 80 bytes
+
+>> save hello.txt v -ascii %save as text (ASCII)
+>> A = [1 2;3 4;5 6];
+>> A
+A =
+
+   1   2
+   3   4
+   5   6
+
+>> A(3,2)
+ans =  6
+>> a(2,:) %fetch every element in the second
+error: 'a' undefined near line 1 column 1
+>> A (2,:)
+ans =
+
+   3   4
+
+>> A(:,1)
+ans =
+
+   1
+   3
+   5
+
+>> A([1 3],:) %get everything from the first and third row
+ans =
+
+   1   2
+   5   6
+
+>> A(:,2) = [10;11;12]
+A =
+
+    1   10
+    3   11
+    5   12
+
+>> A = [A,[100,101,102]] % append another column to the right
+error: horizontal dimensions mismatch (3x2 vs 1x3)
+>>  A = [A,[100;101;102]] % append another column to the right
+A =
+
+     1    10   100
+     3    11   101
+     5    12   102
+
+>> A(:) % all the elements of A in a single vector
+ans =
+
+     1
+     3
+     5
+    10
+    11
+    12
+   100
+   101
+   102
+
+>> A = [1 2; 3 4 ; 5 6]
+A =
+
+   1   2
+   3   4
+   5   6
+
+>> B = [11 12;13 14;15 16]
+B =
+
+   11   12
+   13   14
+   15   16
+
+>> C = [A B] %concatinates both matrices
+C =
+
+    1    2   11   12
+    3    4   13   14
+    5    6   15   16
+
+>> C = [A;B] %Put B at the bottom of A
+C =
+
+    1    2
+    3    4
+    5    6
+   11   12
+   13   14
+   15   16
+
+>> C = [A,B]
+C =
+
+    1    2   11   12
+    3    4   13   14
+    5    6   15   16
+
+>> A = [1 2;3 4; 5 6]
+A =
+
+   1   2
+   3   4
+   5   6
+
+>> B = [11 12 ; 13 14 ; 15 16 ]
+B =
+
+   11   12
+   13   14
+   15   16
+
+>> c = [ 1 1 ; 2 2]
+c =
+
+   1   1
+   2   2
+
+>> C = c
+C =
+
+   1   1
+   2   2
+
+>> A*C
+ans =
+
+    5    5
+   11   11
+   17   17
+
+>> A*B
+error: operator *: nonconformant arguments (op1 is 3x2, op2 is 3x2)
+>> A.*B % multiplies each elements to its corresponding element
+ans =
+
+   11   24
+   39   56
+   75   96
+
+>> A .^2 %element wise sqaure
+ans =
+
+    1    4
+    9   16
+   25   36
+
+>> v = [1;2;3]
+v =
+
+   1
+   2
+   3
+
+>> 1 ./ v
+ans =
+
+   1.00000
+   0.50000
+   0.33333
+
+>> log(v)
+ans =
+
+   0.00000
+   0.69315
+   1.09861
+
+>> exp(v)
+ans =
+
+    2.7183
+    7.3891
+   20.0855
+
+>> v .+ 1
+ans =
+
+   2
+   3
+   4
+
+>> v + ones(length(v),1)
+ans =
+
+   2
+   3
+   4
+
+>> v + 1
+ans =
+
+   2
+   3
+   4
+
+>> A
+A =
+
+   1   2
+   3   4
+   5   6
+
+>> A' %Transpose
+ans =
+
+   1   3   5
+   2   4   6
+
+>> A''
+ans =
+
+   1   2
+   3   4
+   5   6
+
+>> a = [1 15 2 0.5]
+a =
+
+    1.00000   15.00000    2.00000    0.50000
+
+>> val = max(a)
+val =  15
+>> [val, ind] = max(a) %retunrs the maximum values and it's index
+val =  15
+ind =  2
+>> A
+A =
+
+   1   2
+   3   4
+   5   6
+
+>> max(A)
+ans =
+
+   5   6
+
+>> %max column
+>> a < 3
+ans =
+
+  1  0  1  1
+
+>> a
+a =
+
+    1.00000   15.00000    2.00000    0.50000
+
+>> find (a < 3)
+ans =
+
+   1   3   4
+
+>> A = magic(3)
+A =
+
+   8   1   6
+   3   5   7
+   4   9   2
+
+>> %each row column diagonal all add up to the same thing
+>> [row , column] = find (A >= 7)
+row =
+
+   1
+   3
+   2
+
+column =
+
+   1
+   2
+   3
+
+>> help find
+'find' is a built-in function from the file libinterp/corefcn/find.cc
+
+ -- IDX = find (X)
+ -- IDX = find (X, N)
+ -- IDX = find (X, N, DIRECTION)
+ -- [i, j] = find (...)
+ -- [i, j, v] = find (...)
+     Return a vector of indices of nonzero elements of a matrix, as a
+     row if X is a row vector or as a column otherwise.
+
+     To obtain a single index for each matrix element, Octave pretends
+     that the columns of a matrix form one long vector (like Fortran
+     arrays are stored).  For example:
+
+          find (eye (2))
+            => [ 1; 4 ]
+
+     If two inputs are given, N indicates the maximum number of elements
+     to find from the beginning of the matrix or vector.
+
+     If three inputs are given, DIRECTION should be one of "first" or
+     "last", requesting only the first or last N indices, respectively.
+     However, the indices are always returned in ascending order.
+
+     If two outputs are requested, 'find' returns the row and column
+     indices of nonzero elements of a matrix.  For example:
+
+          [i, j] = find (2 * eye (2))
+              => i = [ 1; 2 ]
+              => j = [ 1; 2 ]
+
+     If three outputs are requested, 'find' also returns a vector
+     containing the nonzero values.  For example:
+
+          [i, j, v] = find (3 * eye (2))
+                 => i = [ 1; 2 ]
+                 => j = [ 1; 2 ]
+                 => v = [ 3; 3 ]
+
+     Note that this function is particularly useful for sparse matrices,
+     as it extracts the nonzero elements as vectors, which can then be
+     used to create the original matrix.  For example:
+
+          sz = size (a);
+          [i, j, v] = find (a);
+          b = sparse (i, j, v, sz(1), sz(2));
+
+     See also: nonzeros.
+
+Additional help for built-in functions and operators is
+available in the online version of the manual.  Use the command
+'doc <topic>' to search the manual index.
+
+Help and information about Octave is also available on the WWW
+at https://www.octave.org and via the help@octave.org
+mailing list.
+>> a
+a =
+
+    1.00000   15.00000    2.00000    0.50000
+
+>> sum(a)
+ans =  18.500
+>> prod(a)
+ans =  15
+>> floor(a)
+ans =
+
+    1   15    2    0
+
+>> ceil(a)
+ans =
+
+    1   15    2    1
+
+>> rand (3)
+ans =
+
+   0.38870   0.40253   0.94142
+   0.82460   0.30756   0.45734
+   0.73190   0.43520   0.87832
+
+>> A
+A =
+
+   8   1   6
+   3   5   7
+   4   9   2
+
+>> max(A,[],1)
+ans =
+
+   8   9   7
+
+>> %takes the column wise max , 1
+>> max (A,[],2)%max per row
+ans =
+
+   8
+   7
+   9
+
+>> max(A)
+ans =
+
+   8   9   7
+
+>> max(max(A)) %max num of A
+ans =  9
+>> t = [1 1 100;
+50 50 50;
+60 60 60]
+t =
+
+     1     1   100
+    50    50    50
+    60    60    60
+
+>> max(t)
+ans =
+
+    60    60   100
+
+>> max(max(t))
+ans =  100
+>> A = magic (9)
+A =
+
+   47   58   69   80    1   12   23   34   45
+   57   68   79    9   11   22   33   44   46
+   67   78    8   10   21   32   43   54   56
+   77    7   18   20   31   42   53   55   66
+    6   17   19   30   41   52   63   65   76
+   16   27   29   40   51   62   64   75    5
+   26   28   39   50   61   72   74    4   15
+   36   38   49   60   71   73    3   14   25
+   37   48   59   70   81    2   13   24   35
+
+>> sum(A,1)%sum every column
+ans =
+
+   369   369   369   369   369   369   369   369   369
+
+>> sum (A,2) % sum every row
+ans =
+
+   369
+   369
+   369
+   369
+   369
+   369
+   369
+   369
+   369
+
+>> eye (9)
+ans =
+
+Diagonal Matrix
+
+   1   0   0   0   0   0   0   0   0
+   0   1   0   0   0   0   0   0   0
+   0   0   1   0   0   0   0   0   0
+   0   0   0   1   0   0   0   0   0
+   0   0   0   0   1   0   0   0   0
+   0   0   0   0   0   1   0   0   0
+   0   0   0   0   0   0   1   0   0
+   0   0   0   0   0   0   0   1   0
+   0   0   0   0   0   0   0   0   1
+
+>> A .* eye(9)
+ans =
+
+   47    0    0    0    0    0    0    0    0
+    0   68    0    0    0    0    0    0    0
+    0    0    8    0    0    0    0    0    0
+    0    0    0   20    0    0    0    0    0
+    0    0    0    0   41    0    0    0    0
+    0    0    0    0    0   62    0    0    0
+    0    0    0    0    0    0   74    0    0
+    0    0    0    0    0    0    0   14    0
+    0    0    0    0    0    0    0    0   35
+
+>> flipup (eye(9)) %flips up down
+error: 'flipup' undefined near line 1 column 1
+>> flipud (eye(())
+parse error:
+
+  syntax error
+
+>>> flipud (eye(())
+                 ^
+
+>> flipud(eye((9))
+hb
+parse error:
+
+  syntax error
+
+>>> hb
+     ^
+
+>> sum(A)
+ans =
+
+   369   369   369   369   369   369   369   369   369
+
+>> sum(A .* eye(9))
+ans =
+
+   47   68    8   20   41   62   74   14   35
+
+>> sum(sum(A .* eye(9))) %sum of diagnols
+ans =  369
+>> sum(sum(A .* flipud(eye(9))))
+ans =  369
+>> %sum of the other diagonale
+>> A
+A =
+
+   47   58   69   80    1   12   23   34   45
+   57   68   79    9   11   22   33   44   46
+   67   78    8   10   21   32   43   54   56
+   77    7   18   20   31   42   53   55   66
+    6   17   19   30   41   52   63   65   76
+   16   27   29   40   51   62   64   75    5
+   26   28   39   50   61   72   74    4   15
+   36   38   49   60   71   73    3   14   25
+   37   48   59   70   81    2   13   24   35
+
+>> pinv(A)
+ans =
+
+ Columns 1 through 7:
+
+   0.00045353  -0.00122305   0.00167286   0.01264682  -0.01206152   0.00031805   0.00030300
+   0.00030111   0.00030111   0.01280111  -0.01219889   0.00030111  -0.00108777   0.00169000
+  -0.00107063   0.01401856  -0.01204459   0.00030091   0.00045374   0.00014870   0.00028418
+   0.01264682  -0.01204480   0.00030132   0.00030300  -0.00107251   0.00167286   0.00045353
+  -0.01081000   0.00030111   0.00030111   0.00030111   0.00030111   0.00030111   0.00030111
+   0.00028418   0.00047047   0.00014870  -0.00107063   0.00167474   0.00029923   0.00030091
+   0.00030300   0.00028230   0.00031805   0.00045353   0.00014849   0.00030132   0.01264682
+   0.00030111   0.00030111  -0.00108777   0.00169000   0.00030111   0.01280111  -0.01219889
+   0.00030091   0.00030320   0.00029923   0.00028418   0.01266375  -0.01204459  -0.00107063
+
+ Columns 8 and 9:
+
+   0.00029902   0.00030132
+   0.00030111   0.00030111
+   0.00031993   0.00029923
+   0.00013176   0.00031805
+   0.00030111   0.01141223
+   0.01264703  -0.01204459
+  -0.01341633   0.00167286
+   0.00030111   0.00030111
+   0.00182527   0.00014870
+
